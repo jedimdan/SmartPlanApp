@@ -1,0 +1,160 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>IS306 - Home</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	</head>
+	<body> 
+		<div data-role="page" id="home" >
+			<div data-role="header" data-theme="b" data-nobackbtn="true"> 
+				<h1>IS306 Home</h1> 
+				<div data-role="navbar" data-theme="b">
+					<ul>
+					<li><a href="#home2">Shop</a></li>
+					<li><a href="http://www.yahoo.com" rel="external" >Yahoo!</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content"> 
+				<form action="#" method="get" >
+					<div data-role="fieldcontain" align="center">
+						<label for="name">Date Input:</label>
+						<input type="date" name="name" id="name" value=""  />
+					</div>
+					<div data-role="fieldcontain" align="center">
+					<label for="slider2">Flip switch:</label>
+					<select name="slider2" id="slider2">
+					<option value="off">Off</option>
+					<option value="on">On</option>
+					</select>
+					</div>
+					<div data-role="fieldcontain" align="center">
+						   <label for="slider">Slider:</label>
+						  <input type="range" name="slider" id="slider" value="0" min="0" 
+					max="100" data-role="none" />
+					</div>
+					<div data-role="fieldcontain" align="center">
+					<fieldset data-role="controlgroup">
+							<legend>Choose as many snacks as you'd like:</legend>
+										  <input type="checkbox" name="checkbox-1a" id="checkbox-1a" 
+					class="custom" checked="checked" />
+							<label for="checkbox-1a">Curry Puff</label>
+							<input type="checkbox" name="checkbox-2a" id="checkbox-2a" 
+					class="custom" />
+							<label for="checkbox-2a">Takopachi</label>
+							 <input type="checkbox" name="checkbox-3a" id="checkbox-3a" 
+					class="custom" checked="checked" />
+							<label for="checkbox-3a">Fried Mars Bars</label>
+						</fieldset>
+					</div>
+					<div data-role="fieldcontain" align="center" >
+						<fieldset data-role="controlgroup">
+						 <legend>Choose a pet:</legend>
+							  <input type="radio" name="radio-choice-1" id="radio-choice-1" 
+					value="choice-1"  />
+							  <label for="radio-choice-1">Cat</label>
+							  <input type="radio" name="radio-choice-1" id="radio-choice-2" 
+					value="choice-2" checked="checked" />
+							  <label for="radio-choice-2">Dog</label>
+							  <input type="radio" name="radio-choice-1" id="radio-choice-3" 
+					value="choice-3" />
+							  <label for="radio-choice-3">Hamster</label>
+						</fieldset>
+					</div>
+					<div data-role="fieldcontain" align="center">
+						<label for="select-choice-1" class="select">Choose shipping method:</label>
+						<select name="select-choice-1" id="select-choice-1" data-theme="a">
+							<option value="standard">Standard: 7 day</option>
+							<option value="rush">Rush: 3 days</option>
+							<option value="express">Express: next day</option>
+							<option value="overnight">Overnight</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain" align="center">
+						<input type="button" value="Submit Form" />
+					</div>
+				</form>
+			</div>
+			<div data-role="footer" data-theme="b"> 
+			   <h4>IS306 Footer</h4>
+			</div>
+		</div>
+		<div data-role="page" id="home2" >
+			<div data-role="header" data-theme="b" data-nobackbtn="true"> 
+				<h1>IS306 Home2</h1> 
+				<div data-role="navbar" data-theme="b">
+					<ul>
+					<li><a href="#home" data-direction="reverse">Shop</a></li>
+					<li><a href="http://www.yahoo.com" rel="external" >Yahoo!</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content"> 
+				<form action="#" method="get" >
+					<div data-role="fieldcontain" align="center">
+						<label for="name">Text Input:</label>
+						<input type="text" name="name" id="name" value=""  />
+					</div>
+					<div data-role="fieldcontain" align="center">
+					<label for="slider2">Flip switch:</label>
+					<select name="slider2" id="slider2">
+					<option value="off">Off</option>
+					<option value="on">On</option>
+					</select>
+					</div>
+					<div data-role="fieldcontain" align="center">
+						   <label for="slider">Slider:</label>
+						  <input type="range" name="slider" id="slider" value="0" min="0" 
+					max="100" data-role="none" />
+					</div>
+					<div data-role="fieldcontain" align="center">
+					<fieldset data-role="controlgroup">
+							<legend>Choose as many snacks as you'd like:</legend>
+										  <input type="checkbox" name="checkbox-1a" id="checkbox-1a" 
+					class="custom" checked="checked" />
+							<label for="checkbox-1a">Curry Puff</label>
+							<input type="checkbox" name="checkbox-2a" id="checkbox-2a" 
+					class="custom" />
+							<label for="checkbox-2a">Takopachi</label>
+							 <input type="checkbox" name="checkbox-3a" id="checkbox-3a" 
+					class="custom" checked="checked" />
+							<label for="checkbox-3a">Fried Mars Bars</label>
+						</fieldset>
+					</div>
+					<div data-role="fieldcontain" align="center" >
+						<fieldset data-role="controlgroup">
+						 <legend>Choose a pet:</legend>
+							  <input type="radio" name="radio-choice-1" id="radio-choice-1" 
+					value="choice-1"  />
+							  <label for="radio-choice-1">Cat</label>
+							  <input type="radio" name="radio-choice-1" id="radio-choice-2" 
+					value="choice-2" checked="checked" />
+							  <label for="radio-choice-2">Dog</label>
+							  <input type="radio" name="radio-choice-1" id="radio-choice-3" 
+					value="choice-3" />
+							  <label for="radio-choice-3">Hamster</label>
+						</fieldset>
+					</div>
+					<div data-role="fieldcontain" align="center">
+						<label for="select-choice-1" class="select">Choose shipping method:</label>
+						<select name="select-choice-1" id="select-choice-1" data-theme="a">
+							<option value="standard">Standard: 7 day</option>
+							<option value="rush">Rush: 3 days</option>
+							<option value="express">Express: next day</option>
+							<option value="overnight">Overnight</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain" align="center">
+						<input type="button" value="Submit Form" />
+					</div>
+				</form>
+			</div>
+			<div data-role="footer" data-theme="b"> 
+			   <h4>IS306 Footer</h4>
+			</div>
+		</div>
+	</body>
+</html>

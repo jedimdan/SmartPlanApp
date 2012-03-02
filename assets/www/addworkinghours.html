@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+    <html>
+    <head>
+    <title>SmartPlan</title>
+    <link rel="stylesheet" href="jquery.mobile-1.0.1.css" />
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    </head>
+    <body>
+		<div data-role="page" id="addworkinghour-page1"> 
+			<div data-role="header" data-position="fixed">
+				<a href="index.html" data-direction="reverse" data-icon="delete" rel="external">Cancel</a>
+				<h1>Add Working Hour</h1>
+				<a href="settings.html#settings-working-hours" data-icon="check" rel="external">Save</a>
+			</div>
+			<div data-role="content">
+				<fieldset data-role="controlgroup">
+					<legend>Day</legend>
+					<input type="checkbox" name="day" id="day-1" class="custom" />
+					<label for="day-1">Mon</label>
+					<input type="checkbox" name="day" id="day-2" class="custom" />
+					<label for="day-2">Tue</label>
+					<input type="checkbox" name="day" id="day-3" class="custom" />
+					<label for="day-3">Wed</label>
+					<input type="checkbox" name="day" id="day-4" class="custom" />
+					<label for="day-4">Thu</label>
+					<input type="checkbox" name="day" id="day-5" class="custom" />
+					<label for="day-5">Fri</label>
+					<input type="checkbox" name="day" id="day-6" class="custom" />
+					<label for="day-6">Sat</label>
+					<input type="checkbox" name="day" id="day-7" class="custom" />
+					<label for="day-7">Sun</label>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Start Time</legend>
+					<select name="start-hour" id="start-hour">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+					</select>
+					<select name="start-min" id="start-min">
+						<option>00</option>
+						<option>05</option>
+						<option>10</option>
+						<option>15</option>
+						<option>20</option>
+						<option>25</option>
+						<option>30</option>
+						<option>35</option>
+						<option>40</option>
+						<option>45</option>
+						<option>50</option>
+						<option>55</option>
+					</select>
+					<select name="start-ap" id="start-ap">
+						<option>AM</option>
+						<option>PM</option>
+					</select>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>End Time</legend>
+					<select name="end-hour" id="end-hour">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+					</select>
+					<select name="end-min" id="end-min">
+						<option>00</option>
+						<option>05</option>
+						<option>10</option>
+						<option>15</option>
+						<option>20</option>
+						<option>25</option>
+						<option>30</option>
+						<option>35</option>
+						<option>40</option>
+						<option>45</option>
+						<option>50</option>
+						<option>55</option>
+					</select>
+					<select name="end-ap" id="end-ap">
+						<option>AM</option>
+						<option>PM</option>
+					</select>
+				</fieldset>
+			</div>
+		</div>
+		</body>
+    </html>

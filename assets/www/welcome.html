@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+    <html>
+    <head>
+    <title>SmartPlan</title>
+    <link rel="stylesheet" href="jquery.mobile-1.0.1.css" />
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    </head>
+    <body>
+		<div data-role="page" id="welcome-page1"> 
+			<div data-role="header" data-position="fixed">
+				
+				<h1>Welcome!</h1>
+				<a href="#settings-working-hours" data-icon="arrow-r" data-iconpos="right" class="ui-btn-right">Next</a>
+			</div>
+			<div data-role="content">
+				<p>Welcome to Smartplan! This page will give the first time user a run through of how smartplan works<p>
+				<p><strong>Press "Next" to continue!</strong></p>
+				<a href="#settings-working-hours" data-role="button" data-icon="arrow-r" data-iconpos="right">Next</a>
+			</div>
+		</div>
+		<div data-role="page" id="settings-working-hours"> 
+			<div data-role="header" data-position="inline">
+				<h1>Working Hours</h1>
+				<a href="addworkinghours.html" data-iconpos="right" data-icon="plus" rel="external" class="ui-btn-right">Add</a>
+			</div>
+			<div data-role="content">
+				<strong>You don't have any working hours set up!</strong>
+				<p>SmartPlan will schedule your tasks for you. 
+				All you need to do is tell SmartPlan what time during
+				the days of the week you would like to work, and SmartPlan
+				will intelligently plan your time for you!</p>
+				<a href="addworkinghours.html" data-role="button" data-iconpos="right" data-icon="plus" rel="external">Add a Working Hour</a>
+			</div>
+		</div>
+		</body>
+    </html>

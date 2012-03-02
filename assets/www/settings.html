@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+    <html>
+    <head>
+    <title>SmartPlan</title>
+    <link rel="stylesheet" href="jquery.mobile-1.0.1.css" />
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    </head>
+    <body>
+		<div data-role="page" id="settings-home"> 
+			<div data-role="header" data-position="inline">
+				<a href="index.html" data-direction="reverse" data-icon="home" rel="external">Home</a>
+				<h1>Settings</h1>
+			</div>
+			<div data-role="content">
+				<div data-role="controlgroup">
+					<a href="#settings-defaults" data-role="button" data-icon="arrow-r" data-iconpos="right">Default Settings</a>
+					<a href="#settings-working-hours" data-role="button" data-icon="arrow-r" data-iconpos="right">Designated Working Hours</a>
+					<a href="#settings-categories" data-role="button" data-icon="arrow-r" data-iconpos="right">Categories</a>
+					<button data-icon="arrow-r" data-iconpos="right" onclick="alert('Deleting all data... (just kidding...)');">Reset</button>
+				</div>
+			</div>
+		</div>
+		<div data-role="page" id="settings-defaults"> 
+			<div data-role="header" data-position="inline">
+				<a href="#settings-home" data-direction="reverse" data-icon="arrow-l" >Settings</a>
+				<h1>Default Settings</h1>
+			</div>
+			<div data-role="content">
+			</div>
+		</div>
+		<div data-role="page" id="settings-working-hours"> 
+			<div data-role="header" data-position="fixed">
+				<a href="#settings-home" data-direction="reverse" data-icon="arrow-l" >Settings</a>
+				<h1>Working Hours</h1>
+				<a href="addworkinghours.html" data-iconpos="right" data-icon="plus" rel="external">Add</a>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview">
+					<li data-role="list-divider">Monday</li>
+					<li><a href="editworkinghours.html">10:00 AM to 12:00 PM</a></li>
+					<li><a href="editworkinghours.html">1:00 PM to 6:00 PM</a></li>
+					<li data-role="list-divider">Tuesday</li>
+					<li><a href="editworkinghours.html">10:00 AM to 12:00 PM</a></li>
+					<li data-role="list-divider">Wednesdays</li>
+					<li><a href="editworkinghours.html">10:00 AM to 12:00 PM</a></li>
+					<li><a href="editworkinghours.html">1:00 PM to 6:00 PM</a></li>
+					<li data-role="list-divider">Thursday</li>
+					<li><a href="editworkinghours.html">1:00 PM to 6:00 PM</a></li>
+					<li data-role="list-divider">Friday</li>
+					<li><a href="editworkinghours.html">10:00 AM to 12:00 PM</a></li>
+					<li data-role="list-divider">Saturday</li>
+					<li><a href="editworkinghours.html">9:00 AM to 12:00 PM</a></li>
+					<li data-role="list-divider">Sunday</li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="page" id="settings-categories"> 
+			<div data-role="header" data-position="inline">
+				<a href="#settings-home" data-direction="reverse" data-icon="arrow-l" >Settings</a>
+				<h1>Categories</h1>
+			</div>
+			<div data-role="content">
+			</div>
+		</div>
+    </body>
+    </html>

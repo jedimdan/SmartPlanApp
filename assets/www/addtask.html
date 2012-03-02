@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+    <html>
+    <head>
+    <title>SmartPlan</title>
+    <link rel="stylesheet" href="jquery.mobile-1.0.1.css" />
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    </head>
+    <body>
+		<div data-role="page" id="addtask-page1"> 
+			<div data-role="header" data-position="fixed">
+				<a href="index.html" data-direction="reverse" data-icon="delete" rel="external">Cancel</a>
+				<h1>Add Task</h1>
+				<a href="#addtask-page2" data-icon="check" >Save</a>
+			</div>
+			<div data-role="content">
+				<label for="task-name">Task Name:</label>
+    			<input type="text" name="task-name" id="task-name" value=""  />
+				<fieldset data-role="controlgroup">
+				<legend>This task is due on Sun, 19th Feb 2012</legend>
+			     	<input type="radio" name="quick-due" id="quick-due-1" value="quick-due-1" />
+			     	<label for="quick-due-1">Next day</label>
+			
+			     	<input type="radio" name="quick-due" id="quick-due-2" value="quick-due-2" checked="checked" />
+			     	<label for="quick-due-2">Next week</label>
+			
+			     	<input type="radio" name="quick-due" id="quick-due-3" value="quick-due-3"  />
+			     	<label for="quick-due-3">Next month</label>
+			     	
+			     	<input type="radio" name="quick-due" id="quick-due-4" value="quick-due-4"  />
+			     	<label for="quick-due-4">Custom</label>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+				<legend>Hours needed to complete:</legend>
+			     	<input type="radio" name="hours" id="hours-1" value="hours-1" checked="checked"/>
+			     	<label for="hours-1">1</label>
+			     	
+			     	<input type="radio" name="hours" id="hours-2" value="hours-2" />
+			     	<label for="hours-2">2</label>
+			     	
+			     	<input type="radio" name="hours" id="hours-3" value="hours-3" />
+			     	<label for="hours-3">3</label>
+			     	
+			     	<input type="radio" name="hours" id="hours-4" value="hours-4" />
+			     	<label for="hours-4">More</label>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+				<legend>Importance:</legend>
+			     	<input type="radio" name="importance" id="importance-less" value="importance-less" />
+			     	<label for="importance-less">Less</label>
+			
+			     	<input type="radio" name="importance" id="importance-normal" value="importance-normal" checked="checked" />
+			     	<label for="importance-normal">Normal</label>
+			
+			     	<input type="radio" name="importance" id="importance-more" value="importance-more"  />
+			     	<label for="importance-more">More</label>
+				</fieldset>
+				<label for="category" class="select">Category:</label>
+				<select name="category" id="category">
+				   <option value="1" selected="selected">School</option>
+				   <option value="2">Work</option>
+				   <option value="3">CCA</option>
+				   <option value="4">Add New</option>
+				</select>
+			    <fieldset data-role="controlgroup">
+				   <legend>Alert me when it's time to:</legend>
+				   <input type="checkbox" name="alert-before" id="alert-before" class="custom" />
+				   <label for="alert-before">Start work</label>
+				   <input type="checkbox" name="alert-end" id="alert-end" class="custom" />
+				   <label for="alert-end">Finish up work</label>
+			    </fieldset>
+			</div>
+		</div>
+		</body>
+    </html>

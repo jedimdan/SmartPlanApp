@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+    <html>
+    <head>
+    <title>PhoneGap</title>
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    </head>
+    <body>
+    <h1>Hello World</h1>
+    <input type='date' class='nativedatepicker' readonly='readonly'></input>
+    <script>
+    $('.nativedatepicker').click(function(event) {
+		var currentField = $(this);
+		var myNewDate = Date.parse(currentField.val()) || new Date();
+
+		// Same handling for iPhone and Android
+		window.plugins.datePicker.show({
+			date : myNewDate,
+			mode : 'date', // date or time or blank for both
+			allowOldDates : true
+		}, function(returnDate) {
+			var newDate = new Date(returnDate);
+			currentField.val(newDate.toString("dd/MMM/yyyy"));
+		});
+	});
+
+	$('.nativetimepicker').click(function(event) {
+		var currentField = $(this);
+		var time = currentField.val();
+		var myNewTime = new Date();
+
+		myNewTime.setHours(time.substr(0, 2));
+		myNewTime.setMinutes(time.substr(3, 2));
+
+		// Same handling for iPhone and Android
+		plugins.datePicker.show({
+			date : myNewTime,
+			mode : 'time', // date or time or blank for both
+			allowOldDates : true
+		}, function(returnDate) {
+			var newDate = new Date(returnDate);
+			currentField.val(newDate.toString("HH:mm"));
+		});
+	});
+    </script>
+    </body>
+    </html>
