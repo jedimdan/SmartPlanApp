@@ -13,12 +13,12 @@ function Task(name,duration,duedate)
 //working hours
 function WorkingHour(day,starthr,endhr)
 {
-	this.day = day; //in int
+	this.day = day; //in int. 0 = sunday
 	this.starthr = starthr;
 //	this.startmin = startmin;
 	this.endhr = endhr;
 //	this.endmin = endmin
-	this.duration = endhr - starthour;
+	this.duration = endhr - starthr;
 }
 
 

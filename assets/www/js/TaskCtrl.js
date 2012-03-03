@@ -1,10 +1,12 @@
 //sample data
+tasks = [];
 tasks[0]=new Task('item1',2,toTimeStamp(2012,3,6,18,0,0));
 tasks[1]=new Task('item2',2,toTimeStamp(2012,3,7,18,0,0));
 tasks[2]=new Task('item3',2,toTimeStamp(2012,3,8,18,0,0));
 
 //sample working hours
-workhrs[0]=new WorkingHour(1,12,15);
+workhrs = [];
+workhrs[0]=new WorkingHour(1,12,17);
 workhrs[1]=new WorkingHour(1,18,20);
 workhrs[2]=new WorkingHour(2,12,14);
 
@@ -21,9 +23,9 @@ function sorttasks(tasks,workhrs)
 	nextWorkHr = 0; //to be replaced with logic later
 
 //loop all the working hours until all tasks have been assigned
-	var nexttask = 0;
-	var currhour = nextWorkHr;
-	var week = 0;
+	nexttask = 0;
+	currhour = nextWorkHr;
+	week = 0;
 		
 	while(nexttask < tasks.length)
 	{
@@ -38,9 +40,12 @@ function sorttasks(tasks,workhrs)
 		{
 			
 //			if task hours < total hours
-			if(tasks[i].duration < hours){	
+			if(tasks[i].duration <= hours){	
 //				assign task a slot (working hour end - total hours)
 				starttime = nextWeekDayDate(currWorkHr.day,currWorkHr.endhr-hours,week);
+				tasks[i].starttime = starttime;
+//				starttime.setHours(starttime.getHours()+tasks[i].duration);
+				//tasks[i].endtime = starttime;
 //				total hours = total hours - task duration
 				hours = hours - tasks[i].duration;
 				
@@ -57,8 +62,9 @@ function sorttasks(tasks,workhrs)
 		}
 		
 		//reset to start
-		if(currhour > workhrs.length){
+		if(currhour >= workhrs.length){
 			currhour = 0;
+			week++;
 		}
 	}
 	
@@ -67,7 +73,7 @@ function sorttasks(tasks,workhrs)
 	
 	
 //convert date time to unix
-function toTimestamp(year,month,day,hour,minute,second)
+function toTimeStamp(year,month,day,hour,minute,second)
 {
 	 var datum = new Date(Date.UTC(year,month-1,day,hour,minute,second));
 	 return datum.getTime()/1000;
@@ -77,8 +83,7 @@ function toTimestamp(year,month,day,hour,minute,second)
 function nextWeekDayDate(day,timesethr,offset)
 {
 	now = new Date();
-	today= now.getDay()+1;
-	
+	today= now.getDay();
 	if (day != today){
 		diff = day - today; //eg day = 4,today3 
 		
@@ -88,6 +93,9 @@ function nextWeekDayDate(day,timesethr,offset)
 		else {
 			now.setDate(now.getDate()+diff+7+(offset*7));
 		}
+	}
+	else{
+		now.setDate(now.getDate()+(offset*7));
 	}
 	
 	now.setHours(timesethr);
