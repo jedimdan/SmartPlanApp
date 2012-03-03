@@ -1,17 +1,22 @@
 //task item
-function task(name)
+function task(name,duration,duedate)
 {
 	this.name = name;
 	this.duration = duration;
-	this.startdate = startdate; 
-	this.starthour = sharthour;
+	this.duedate = duedate;
+	this.starttime = null;
+	this.endttime = null;
+	this.done = false;
 	this.assigned = false; //flag, not stored in database
 }
 
 //working hours
-function workinghour()
+function workinghour(day,starttime,endtime)
 {
-	this.
+	this.day = day;
+	this.starttime = starttime;
+	this.endtime = endtime;
+	this.duration = startime-endtime;
 }
 
 
