@@ -1,8 +1,8 @@
 //task item
-function task(name,duration,duedate)
+function Task(name,duration,duedate)
 {
 	this.name = name;
-	this.duration = duration;
+	this.duration = duration; //in hours
 	this.duedate = duedate;
 	this.starttime = null;
 	this.endttime = null;
@@ -11,17 +11,19 @@ function task(name,duration,duedate)
 }
 
 //working hours
-function workinghour(day,starttime,endtime)
+function WorkingHour(day,starthr,endhr)
 {
-	this.day = day;
-	this.starttime = starttime;
-	this.endtime = endtime;
-	this.duration = startime-endtime;
+	this.day = day; //in int
+	this.starthr = starthr;
+//	this.startmin = startmin;
+	this.endhr = endhr;
+//	this.endmin = endmin
+	this.duration = endhr - starthour;
 }
 
 
 //settings
-function setting(property,value)
+function Setting(property,value)
 {
 	this.property = property;
 	this.value = value;
