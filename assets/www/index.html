@@ -6,13 +6,20 @@
     <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/Models.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/DatabaseCtrl.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/TaskCtrl.js"></script>
     <script>	
 		$(document).bind("mobileinit", function(){
 			$.mobile.fixedToolbars.setTouchToggleEnabled(false);
 		    //$.mobile.touchOverflowEnabled = true;
 		});
+		
+		$(document).ready(indextest);
+		
+		function indextest(){
+			var indextasks = sorttasks(tasks,workhrs);
+		}
 	</script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     </head>
