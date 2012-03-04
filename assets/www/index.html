@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="jquery.mobile-1.0.1.css" />
     <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
+    
     <script type="text/javascript" charset="utf-8" src="js/Models.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/DatabaseCtrl.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/TaskCtrl.js"></script>
@@ -15,13 +15,31 @@
 		    //$.mobile.touchOverflowEnabled = true;
 		});
 		
-		$(document).ready(indextest);
+		$(document).ready(populateCalendarList);
 		
-		function indextest(){
-			var indextasks = sorttasks(tasks,workhrs);
+		function populateCalendarList(){
+			workslots = sorttasks(tasks,workhrs);
+			
+			now = new Date();
+			currWeekday = now.getDay();
+			weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+			
+			$("<li data-role='list-divider'>"+now.toDateString()+"</li>").appendTo('#calendarlist');
+			
+			for(i=0;i<workslots.length;i++){
+				if (workslots[i].workhr.day != currWeekday){
+					currWeekday = workslots[i].workhr.day;
+					$("<li data-role='list-divider'>"+workslots[i].datetime.toDateString()+"</li>").appendTo('#calendarlist');
+				}
+				
+				for(j=0;j<workslots[i].tasks.length;j++){
+					$("<li><a href='addtask.html'>"+workslots[i].tasks[j].starttime.getHours()+":00 - "+workslots[i].tasks[j].name+"</a></li>").appendTo('#calendarlist');
+				}
+			}
 		}
 	</script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
     </head>
     <body>
 		<div data-role="page" id="index-calendar"> 
@@ -31,7 +49,9 @@
 				<a href="addtask.html" data-icon="plus" data-iconpos="right" rel="external">Add</a>
 			</div>
 			<div data-role="content">
-				<a href="welcome.html" rel="external">Welcome Screen (Link won't exist in final version)</a>
+				<a href="welcome.html" rel="external" data-role="button">Welcome Screen (Link won't exist in final version)</a>
+				<ul data-role="listview" id="calendarlist">
+				</ul>
 			</div>
 			<div data-role="navbar">
 				<ul>
