@@ -1,6 +1,7 @@
 //task item
-function Task(name,duration,duedate)
+function Task(id,name,duration,duedate)
 {
+	this.id = id;
 	this.name = name;
 	this.duration = duration; //in hours
 	this.duedate = duedate;
