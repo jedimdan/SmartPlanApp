@@ -1,10 +1,10 @@
 //sample data
 tasks = [];
-tasks[0]=new Task('item1',2,toTimeStamp(2012,3,6,18,0,0));
-tasks[1]=new Task('item2',2,toTimeStamp(2012,3,7,18,0,0));
-tasks[2]=new Task('item3',2,toTimeStamp(2012,3,8,18,0,0));
-tasks[3]=new Task('item4',1,toTimeStamp(2012,3,9,18,0,0));
-tasks[4]=new Task('item5',1,toTimeStamp(2012,3,9,18,0,0));
+tasks[0]=new Task(1,'item1',2,toTimeStamp(2012,3,6,18,0,0));
+tasks[1]=new Task(2,'item2',2,toTimeStamp(2012,3,7,18,0,0));
+tasks[2]=new Task(3,'item3',2,toTimeStamp(2012,3,8,18,0,0));
+tasks[3]=new Task(4,'item4',1,toTimeStamp(2012,3,9,18,0,0));
+tasks[4]=new Task(5,'item5',1,toTimeStamp(2012,3,9,18,0,0));
 
 //sample working hours
 workhrs = [];

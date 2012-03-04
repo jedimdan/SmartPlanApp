@@ -8,7 +8,7 @@
 
 //create task
 
-//retrieve task
+//retrieve tasks with 'done' column set as false. Returns an array of Task objects. Needs to be order by duedate
 
 //update task
 

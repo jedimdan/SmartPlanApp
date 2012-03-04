@@ -47,6 +47,6 @@ function successCB() {
 // PhoneGap is ready
 //
 function onDeviceReady() {
-    var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 100000);
+    var db = window.openDatabase("SomeDatabaseName", "1.0", "PhoneGap Demo", 100000);
     db.transaction(populateDB, errorCB, successCB);
 }

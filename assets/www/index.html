@@ -33,7 +33,7 @@
 				}
 				
 				for(j=0;j<workslots[i].tasks.length;j++){
-					$("<li><a href='addtask.html'>"+workslots[i].tasks[j].starttime.getHours()+":00 - "+workslots[i].tasks[j].name+"</a></li>").appendTo('#calendarlist');
+					$("<li><a href='addtask.html'>"+workslots[i].tasks[j].starttime.getHours()+":00 - "+workslots[i].tasks[j].name+"<input type='checkbox'/></a></li>").appendTo('#calendarlist');
 				}
 			}
 		}
@@ -49,9 +49,9 @@
 				<a href="addtask.html" data-icon="plus" data-iconpos="right" rel="external">Add</a>
 			</div>
 			<div data-role="content">
-				<a href="welcome.html" rel="external" data-role="button">Welcome Screen (Link won't exist in final version)</a>
 				<ul data-role="listview" id="calendarlist">
 				</ul>
+				<a href="welcome.html" rel="external" data-role="button">Welcome Screen (Link won't exist in final version)</a>
 			</div>
 			<div data-role="navbar">
 				<ul>
