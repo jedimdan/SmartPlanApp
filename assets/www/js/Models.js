@@ -21,6 +21,12 @@ function WorkingHour(day,starthr,endhr)
 	this.duration = endhr - starthr;
 }
 
+//working hour slot for the calendar
+function WorkingSlot(workhr,datetime){
+	this.datetime = datetime;
+	this.workhr = workhr;
+	this.tasks = [];
+}
 
 //settings
 function Setting(property,value)
