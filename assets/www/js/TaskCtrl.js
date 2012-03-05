@@ -1,18 +1,16 @@
 //sample data
 tasks = [];
-tasks[0]=new Task(0,'item1',2,toTimeStamp(2012,3,6,18,0,0));
-tasks[1]=new Task(1,'item2',2,toTimeStamp(2012,3,7,18,0,0));
-tasks[2]=new Task(2,'item3',2,toTimeStamp(2012,3,8,18,0,0));
-tasks[3]=new Task(3,'item4',2,toTimeStamp(2012,3,9,18,0,0));
-tasks[4]=new Task(4,'item5',2,toTimeStamp(2012,3,9,18,0,0));
+tasks[0]=new Task(0,'item1',2,toTimeStamp(2012,3,11,18,0,0));
+tasks[1]=new Task(1,'item2',2,toTimeStamp(2012,3,12,18,0,0));
+tasks[2]=new Task(2,'item3',2,toTimeStamp(2012,3,13,18,0,0));
+tasks[3]=new Task(3,'item4',2,toTimeStamp(2012,3,14,18,0,0));
+tasks[4]=new Task(4,'item5',2,toTimeStamp(2012,3,15,18,0,0));
 
 //sample working hours
 workhrs = [];
-workhrs[0]=new WorkingHour(0,12,14);
-workhrs[1]=new WorkingHour(1,12,14);
-workhrs[2]=new WorkingHour(2,12,14);
-workhrs[3]=new WorkingHour(3,12,14);
-workhrs[4]=new WorkingHour(4,12,14);
+workhrs[0]=new WorkingHour(1,12,14);
+workhrs[1]=new WorkingHour(3,12,18);
+workhrs[2]=new WorkingHour(4,18,20);
 
 //sort tasks and returns them in a calendar.
 ////////////
@@ -100,14 +98,6 @@ function sorttasks(tasks,workhrs)
 	}
 	
 	return workSlotsPopulated;
-}
-	
-	
-//convert date time to unix
-function toTimeStamp(year,month,day,hour,minute,second)
-{
-	 var datum = new Date(Date.UTC(year,month-1,day,hour,minute,second));
-	 return datum.getTime()/1000;
 }
 
 //get date of next available week day
