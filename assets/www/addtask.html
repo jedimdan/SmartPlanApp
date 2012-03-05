@@ -31,6 +31,17 @@
 				}
 			}
 		}
+		
+		function addTask(){
+			//Adding a new Task, temporarily.
+			//Trying to create a hard coded task first for testing
+			
+			tasks.push(new Task(tasks.length-1,'New Task '+[tasks.length+1],1,toTimeStamp(2012,3,9,18,0,0)));
+			alert('Added '+tasks[tasks.length-1].name);
+		
+			document.location.href="index.html";
+		}
+		
     </script>
     <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
@@ -41,8 +52,10 @@
 			<div data-role="header" data-position="fixed">
 				<a href="index.html" data-direction="reverse" data-icon="delete" rel="external">Cancel</a>
 				<h1>Add Task</h1>
-				<a href="#addtask-page2" data-icon="check" >Save</a>
+				<!-- <a href="#addtask-page2" data-icon="check" >Save</a> -->
+				<a onclick='addTask()'>Save</a>
 			</div>
+			
 			<div data-role="content">
 				<label for="task-name">Task Name:</label>
     			<input type="text" name="task-name" id="task-name" value=""  />
