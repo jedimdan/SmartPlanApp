@@ -1,0 +1,12 @@
+.ui-icon-checkbox-unticked {
+	background-image: url("images/icons-18-white.png");
+	background-position: 	-684px 50%;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-checkbox-unticked {
+		background-image: url("app-icon-email-highres.png");
+		background-size: 18px 18px;
+		background-position: 	-684px 50%;
+	}
+}
