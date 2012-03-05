@@ -1,15 +1,18 @@
 //sample data
 tasks = [];
-tasks[0]=new Task(1,'item1',2,toTimeStamp(2012,3,6,18,0,0));
-tasks[1]=new Task(2,'item2',2,toTimeStamp(2012,3,7,18,0,0));
-tasks[2]=new Task(3,'item3',2,toTimeStamp(2012,3,8,18,0,0));
-tasks[3]=new Task(4,'item4',1,toTimeStamp(2012,3,9,18,0,0));
-tasks[4]=new Task(5,'item5',1,toTimeStamp(2012,3,9,18,0,0));
+tasks[0]=new Task(0,'item1',2,toTimeStamp(2012,3,6,18,0,0));
+tasks[1]=new Task(1,'item2',2,toTimeStamp(2012,3,7,18,0,0));
+tasks[2]=new Task(2,'item3',2,toTimeStamp(2012,3,8,18,0,0));
+tasks[3]=new Task(3,'item4',2,toTimeStamp(2012,3,9,18,0,0));
+tasks[4]=new Task(4,'item5',2,toTimeStamp(2012,3,9,18,0,0));
 
 //sample working hours
 workhrs = [];
-workhrs[0]=new WorkingHour(1,12,17);
-workhrs[1]=new WorkingHour(3,12,15);
+workhrs[0]=new WorkingHour(0,12,14);
+workhrs[1]=new WorkingHour(1,12,14);
+workhrs[2]=new WorkingHour(2,12,14);
+workhrs[3]=new WorkingHour(3,12,14);
+workhrs[4]=new WorkingHour(4,12,14);
 
 //sort tasks and returns them in a calendar.
 ////////////
@@ -22,6 +25,21 @@ function sorttasks(tasks,workhrs)
 
 //get next working hour position
 	nextWorkHr = 0; //to be replaced with logic later
+	nowDate = new Date();
+	for(i=0;i<workhrs.length;i++){
+		curr = workhrs[i];
+		
+		if(curr.day == nowDate.getDay() && curr.starthr > nowDate.getHours()){
+			nextWorkHr = i;
+			break;
+		}
+		else if(curr.day > nowDate.getDay()){
+			nextWorkHr = i;
+			break;
+		}
+	}
+	
+	
 
 //loop all the working hours until all tasks have been assigned
 	nexttask = 0;
@@ -36,6 +54,10 @@ function sorttasks(tasks,workhrs)
 		currWorkHr = workhrs[currhour];
 //		get total hours
 		hours = currWorkHr.duration;
+		
+		if(currWorkHr.day <= nowDate.getDay() && currWorkHr.day != 0){
+			week++;
+		}
 		
 		currSlot = new WorkingSlot(currWorkHr,nextWeekDayDate(currWorkHr.day,currWorkHr.starthr,week));
 		

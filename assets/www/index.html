@@ -22,10 +22,10 @@
 			workslots = sorttasks(tasks,workhrs);
 			
 			now = new Date();
-			currWeekday = now.getDay();
+			currWeekday = -1;
 			weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 			
-			$("<li data-role='list-divider'>"+now.toDateString()+"</li>").appendTo('#calendarlist');
+			//$("<li data-role='list-divider'>"+now.toDateString()+"</li>").appendTo('#calendarlist');
 			
 			for(i=0;i<workslots.length;i++){
 				if (workslots[i].workhr.day != currWeekday){
@@ -35,7 +35,7 @@
 				
 				for(j=0;j<workslots[i].tasks.length;j++){
 					id = workslots[i].tasks[j].id;
-					$("<li id='task-"+id+"'><a id='"+id+"' onclick='toggleEdit("+id+")'><h3>"+workslots[i].tasks[j].name+"</h3><p class='ui-li-aside'><strong>"+workslots[i].tasks[j].starttime.getHours()+":00</strong></p></a><a href='#'>Tick</a></li>").appendTo('#calendarlist');
+					$("<li id='task-"+id+"'><a id='"+id+"' onclick='toggleEdit("+id+")'><h3>"+workslots[i].tasks[j].name+"</h3><p class='ui-li-aside'><strong>"+workslots[i].tasks[j].starttime.getHours()+":00</strong></p></a><a onclick='completeTask("+id+")'>Finish</a></li>").appendTo('#calendarlist');
 					$("<li class='edit' id='edit-"+id+"' data-theme='e' style='display:none'><a rel='external' href='addtask.html?id="+id+"'>Edit</a></li>").appendTo('#calendarlist');
 					$("<li class='edit' id='delete-"+id+"' data-theme='e' style='display:none'><a onclick='deleteTask("+id+',"'+workslots[i].tasks[j].name+'"'+")'>Delete</a></li>").appendTo('#calendarlist');
 				}
@@ -58,6 +58,10 @@
 				
 				//after deleting, refresh page
 			}
+		}
+		
+		function completeTask(item){
+			alert('Complete task '+item);
 		}
 	</script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
