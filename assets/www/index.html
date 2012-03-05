@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="jquery.mobile-1.0.1.css" />
     <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
-    
+    <script type="text/javascript" charset="utf-8" src="js/Global.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/Models.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/DatabaseCtrl.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/TaskCtrl.js"></script>
@@ -33,9 +33,21 @@
 				}
 				
 				for(j=0;j<workslots[i].tasks.length;j++){
-					$("<li><a href='addtask.html'>"+workslots[i].tasks[j].starttime.getHours()+":00 - "+workslots[i].tasks[j].name+"<input type='checkbox'/></a></li>").appendTo('#calendarlist');
+					id = workslots[i].tasks[j].id;
+					$("<li><a id='"+id+"' onclick='toggleEdit("+id+")'><h3>"+workslots[i].tasks[j].name+"</h3><p class='ui-li-aside'><strong>"+workslots[i].tasks[j].starttime.getHours()+":00</strong></p></a><a href='#'>Tick</a></li>").appendTo('#calendarlist');
+					$("<li class='edit' id='edit-"+id+"' data-theme='e' style='display:none'><a rel='external' href='addtask.html?id="+id+"'>Edit</a></li>").appendTo('#calendarlist');
+					$("<li class='edit' id='delete-"+id+"' data-theme='e' style='display:none'><a onclick='deleteTask("+id+")'>Delete</a></li>").appendTo('#calendarlist');
 				}
 			}
+		}
+		
+		function toggleEdit(item){
+			$('#edit-'+item).toggle();
+			$('#delete-'+item).toggle();
+		}
+		
+		function deleteTask(item){
+			alert('Task '+item+' DELEEEETEEEEDDD!!');
 		}
 	</script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -49,7 +61,7 @@
 				<a href="addtask.html" data-icon="plus" data-iconpos="right" rel="external">Add</a>
 			</div>
 			<div data-role="content">
-				<ul data-role="listview" id="calendarlist">
+				<ul data-role="listview" id="calendarlist" data-split-icon="checkbox-off" data-split-theme="d">
 				</ul>
 				<a href="welcome.html" rel="external" data-role="button">Welcome Screen (Link won't exist in final version)</a>
 			</div>
