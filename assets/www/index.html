@@ -18,6 +18,7 @@
 		$(document).ready(populateCalendarList);
 		
 		function populateCalendarList(){
+			
 			workslots = sorttasks(tasks,workhrs);
 			
 			now = new Date();
@@ -34,9 +35,9 @@
 				
 				for(j=0;j<workslots[i].tasks.length;j++){
 					id = workslots[i].tasks[j].id;
-					$("<li><a id='"+id+"' onclick='toggleEdit("+id+")'><h3>"+workslots[i].tasks[j].name+"</h3><p class='ui-li-aside'><strong>"+workslots[i].tasks[j].starttime.getHours()+":00</strong></p></a><a href='#'>Tick</a></li>").appendTo('#calendarlist');
+					$("<li id='task-"+id+"'><a id='"+id+"' onclick='toggleEdit("+id+")'><h3>"+workslots[i].tasks[j].name+"</h3><p class='ui-li-aside'><strong>"+workslots[i].tasks[j].starttime.getHours()+":00</strong></p></a><a href='#'>Tick</a></li>").appendTo('#calendarlist');
 					$("<li class='edit' id='edit-"+id+"' data-theme='e' style='display:none'><a rel='external' href='addtask.html?id="+id+"'>Edit</a></li>").appendTo('#calendarlist');
-					$("<li class='edit' id='delete-"+id+"' data-theme='e' style='display:none'><a onclick='deleteTask("+id+")'>Delete</a></li>").appendTo('#calendarlist');
+					$("<li class='edit' id='delete-"+id+"' data-theme='e' style='display:none'><a onclick='deleteTask("+id+',"'+workslots[i].tasks[j].name+'"'+")'>Delete</a></li>").appendTo('#calendarlist');
 				}
 			}
 		}
@@ -46,8 +47,17 @@
 			$('#delete-'+item).toggle();
 		}
 		
-		function deleteTask(item){
-			alert('Task '+item+' DELEEEETEEEEDDD!!');
+		function deleteTask(item,name){
+			if (confirm("Are you sure you want to delete the task '"+name+"'? This action cannot be undone.")) { 
+				alert('Task '+item+' DELEEEETEEEEDDD!!');
+				
+				//delete. For now just taking out from screen
+				$('#task-'+item).remove();
+				$('#edit-'+item).remove();
+				$('#delete-'+item).remove();
+				
+				//after deleting, refresh page
+			}
 		}
 	</script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
