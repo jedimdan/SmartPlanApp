@@ -1,3 +1,5 @@
+							$("<li><a href='addworkinghours.html?id="+id+"' rel='external'>"+data[i][j].starthr+":00 to "+data[i][j].endhr+":00</a><a onclick=\"alert('delete')\">Delete</a></li>").appendTo('#workhrlist');
+
 //task item
 function Task(id,name,duration,duedate)
 {

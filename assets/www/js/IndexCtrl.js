@@ -67,7 +67,7 @@ function tasksSelectDone(tx,results){
 function workhrsSelectDone(tx,results){
 	indexworkhrs = results.rows;
 	workhrsdb = true;
-	alert('a'-workhrsdb);
+	alert('a'+workhrsdb);
 }
 
 //push rows into populate

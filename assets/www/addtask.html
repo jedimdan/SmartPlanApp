@@ -6,44 +6,216 @@
     <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/Global.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/Models.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/TaskCtrl.js"></script>
+    <!-- <script type="text/javascript" charset="utf-8" src="js/Models.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/TaskCtrl.js"></script> -->
+    
     <script>
+    	$( '#addtask-page1' ).live( "pagecreate", function() {
+		    var picker = $( "input#taskdue", this );
+		    picker.mobipick();
+		    
+		    picker.bind( "change", function() {
+			    // JavaScript Date object
+			    var taskduedate = $( this ).mobipick( "option", "date" );
+			});
+		});
+    	
     	$(document).ready(editTaskPopulate);
     	
+    	var taskduedate;
+    	var taskpriority;
+    	var taskduration;
+    	
     	function editTaskPopulate(){
+    		
+    		taskpriority = 1;
+    		
+    		
+    		taskduration = 1;
+    		
+    		$("#alert-before").attr("checked",true);
+    		$("#alert-end").attr("checked",true);
+    		$("[name='username']").val('danieltsou');
+    		
 			//get ID
 			id = getParameterByName('id');
 			
 			if(id){ //populate only if there is an id.
 
 				//get task. replace with db code.
-				currTask = tasks[id];
-				
-				$("[name='task-name']").val(currTask.name);
-				
-				if(currTask.duration > 0 && currTask.duration < 4){
-					$("[name='hours']").val(['hours-'+currTask.duration]);
-				}
-				else{
-					$("[name='hours']").val(['hours-4']);
-				}
+				$.ajax({url:'http://2012-02-is306-t6-v1.appspot.com/task/get/'+id,dataType: 'jsonp',success:
+					function(data){
+						taskduedate = new Date(data.duedate*1000);
+						$('#taskdue').val(taskduedate.toDateString());
+						$("[name='id']").val(id);
+						$("[name='username']").val('danieltsou');
+						$("[name='task-name']").val(data.name);
+						$("#importance-"+data.priority).attr("checked",true).checkboxradio("refresh");
+						$("#alert-before").attr("checked",data.alertbefore).checkboxradio("refresh");
+						$("#alert-end").attr("checked",data.alertend).checkboxradio("refresh");
+						
+						//$("[name='priority']").val(['pri-'+data.priority]);
+						
+						//duration
+						taskduration = data.duration;
+						$('#taskhours').val(taskduration);
+						
+						if(data.duration > 0 && data.duration < 4){
+							
+						}
+						else{
+							
+						}
+						
+						//priority
+						taskpriority = data.priority;
+						switch(data.priority){
+							case 0:
+								$('#taskpriority').html('Less');
+								break;
+							case 1:
+								$('#taskpriority').html('Normal');
+								break;
+							case 2:
+								$('#taskpriority').html('More');
+								break;
+						}
+						
+						
+					}
+				});
+			}
+			else{
+				taskduedate = new Date();
+	    		taskduedate.setDate(taskduedate.getDate()+7);
+	    		$('#taskdue').val(taskduedate.toDateString());
+    		}
+		}
+		
+		function changepri(selector){
+			//priority
+			taskpriority = $(selector).val();
+			switch(taskpriority){
+				case '0':
+					$('#taskpriority').html('Less');
+					break;
+				case '1':
+					$('#taskpriority').html('Normal');
+					break;
+				case '2':
+					$('#taskpriority').html('More');
+					break;
 			}
 		}
 		
+		function changedue(selector){
+			nowdue = new Date();
+			option = $(selector).val();
+			
+			switch(selector){
+				case "day":
+					taskduedate.setMonth(nowdue.getMonth());
+					taskduedate.setDate(nowdue.getDate()+1);
+					$('#taskdue').val(taskduedate.toDateString());
+					break;
+				case "week":
+					taskduedate.setMonth(nowdue.getMonth());
+					taskduedate.setDate(nowdue.getDate()+7);
+					$('#taskdue').val(taskduedate.toDateString());
+					break;
+				case "month":
+					taskduedate.setMonth(nowdue.getMonth()+1);
+					taskduedate.setDate(nowdue.getDate());
+					$('#taskdue').val(taskduedate.toDateString());
+					break;
+				case "custom":
+					$('#taskdue').change();
+					break;
+			}
+		}
+		
+		function changehour(selector){
+			nowdue = new Date();
+			option = $(selector).val();
+			
+			taskduration = option;
+			$('#taskhours').val(taskduration);
+				
+		}
+		
 		function addTask(){
+			//alert(taskduedate);
+			//alert(Date());
+			taskdueint = Math.round(Date.parse($('#taskdue').val())/1000);
+			//taskdueint = Math.round(taskduedate.getTime()/1000)
+			
 			//Adding a new Task, temporarily.
 			//Trying to create a hard coded task first for testing
 			
-			tasks.push(new Task(tasks.length-1,'New Task '+[tasks.length+1],1,toTimeStamp(2012,3,9,18,0,0)));
-			alert('Added '+tasks[tasks.length-1].name);
+			//tasks.push(new Task(tasks.length-1,'New Task '+[tasks.length+1],1,toTimeStamp(2012,3,9,18,0,0)));
+			//alert('Added '+tasks[tasks.length-1].name);
+			
+			alertbefore=$("[name='alert-before']").attr("checked")=='checked';
+			alertend=$("[name='alert-end']").attr("checked")=='checked';
+			//alert(alertbefore);
+			
+			//get ID
+			id = getParameterByName('id');
+			
+			if(id){ //save only if there is an id.
+			//alert($("[name='hours']").val())
+			$.ajax({url:'http://2012-02-is306-t6-v1.appspot.com/task/submit',
+					dataType: 'jsonp',
+					data:{
+							id:$("[name='id']").val(),
+							taskname:$("[name='task-name']").val(),
+							hours:taskduration,
+							priority:taskpriority,
+							quickdue:taskdueint,
+							alertbefore:alertbefore,
+							alertend:alertend
+							},
+					success:
+						function(){
+							alert('Task saved!');
+							document.location.href="index.html";
+						}
+				});
+			}
+			else{ //save only if there is an id.
+			//alert($("[name='hours']").val())
+			$.ajax({url:'http://2012-02-is306-t6-v1.appspot.com/task/submit',
+					dataType: 'jsonp',
+					data:{
+							username:$("[name='username']").val(),
+							taskname:$("[name='task-name']").val(),
+							hours:taskduration,
+							priority:taskpriority,
+							quickdue:Math.round(taskduedate.getTime()/1000),
+							alertbefore:$("[name='alert-before']").val(),
+							alertend:$("[name='alert-end']").val()
+							},
+					success:
+						function(){
+							alert('Task created!');
+							//document.location.href="index.html";
+						}
+				});
+			}
+			
+			//$('#addTask').submit();
+			//alert('submitted');
 		
-			document.location.href="index.html";
+			
 		}
 		
     </script>
     <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mobipick.css" />
+	<script type="text/javascript" src="external/xdate.js"></script>
+	<script type="text/javascript" src="external/xdate.i18n.js"></script>
+	<script type="text/javascript" src="js/mobipick.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     </head>
     <body>
@@ -56,61 +228,73 @@
 			</div>
 			
 			<div data-role="content">
-				<label for="task-name">Task Name:</label>
-    			<input type="text" name="task-name" id="task-name" value=""  />
-				<fieldset data-role="controlgroup">
-				<legend>This task is due on Sun, 19th Feb 2012</legend>
-			     	<input type="radio" name="quick-due" id="quick-due-1" value="quick-due-1" />
-			     	<label for="quick-due-1">Next day</label>
-			
-			     	<input type="radio" name="quick-due" id="quick-due-2" value="quick-due-2" checked="checked" />
-			     	<label for="quick-due-2">Next week</label>
-			
-			     	<input type="radio" name="quick-due" id="quick-due-3" value="quick-due-3"  />
-			     	<label for="quick-due-3">Next month</label>
-			     	
-			     	<input type="radio" name="quick-due" id="quick-due-4" value="quick-due-4"  />
-			     	<label for="quick-due-4">Custom</label>
-				</fieldset>
-				<fieldset data-role="controlgroup" data-type="horizontal">
-				<legend>Hours needed to complete:</legend>
-			     	<input type="radio" name="hours" id="hours-1" value="hours-1" checked="checked"/>
-			     	<label for="hours-1">1</label>
-			     	
-			     	<input type="radio" name="hours" id="hours-2" value="hours-2" />
-			     	<label for="hours-2">2</label>
-			     	
-			     	<input type="radio" name="hours" id="hours-3" value="hours-3" />
-			     	<label for="hours-3">3</label>
-			     	
-			     	<input type="radio" name="hours" id="hours-4" value="hours-4" />
-			     	<label for="hours-4">More</label>
-				</fieldset>
-				<fieldset data-role="controlgroup" data-type="horizontal">
-				<legend>Importance:</legend>
-			     	<input type="radio" name="importance" id="importance-less" value="importance-less" />
-			     	<label for="importance-less">Less</label>
-			
-			     	<input type="radio" name="importance" id="importance-normal" value="importance-normal" checked="checked" />
-			     	<label for="importance-normal">Normal</label>
-			
-			     	<input type="radio" name="importance" id="importance-more" value="importance-more"  />
-			     	<label for="importance-more">More</label>
-				</fieldset>
-				<label for="category" class="select">Category:</label>
-				<select name="category" id="category">
-				   <option value="1" selected="selected">School</option>
-				   <option value="2">Work</option>
-				   <option value="3">CCA</option>
-				   <option value="4">Add New</option>
-				</select>
-			    <fieldset data-role="controlgroup">
-				   <legend>Alert me when it's time to:</legend>
-				   <input type="checkbox" name="alert-before" id="alert-before" class="custom" />
-				   <label for="alert-before">Start work</label>
-				   <input type="checkbox" name="alert-end" id="alert-end" class="custom" />
-				   <label for="alert-end">Finish up work</label>
-			    </fieldset>
+				<form id="addTask" action="http://2012-02-is306-t6-v1.appspot.com/task/submit">
+					<input type="hidden" name="id"/>
+					<input type="hidden" name="username"/>
+					<label for="taskname">Task Name:</label>
+	    			<input type="text" name="task-name" id="task-name" value="Some Task" onfocus="if($(this).val()=='Some Task'){$(this).val('');}" onblur="if($(this).val()==''){$(this).val('Some Task');}" />
+					<label for="taskduestr">This task is due on:</label><input type="text" name="taskduestr" id="taskdue"/>
+					<fieldset data-role="controlgroup">
+				     	<input type="button" onclick="changedue('day')" value="Next Day" />
+				     	<input type="button" onclick="changedue('week')" value="Next Week" />
+				     	<input type="button" onclick="changedue('month')" value="Next Month" />
+				     	<!-- <input type="radio" name="quickdue" id="quick-due-1" value="day" onclick="changedue(this)"/>
+				     	<label for="quick-due-1">Next day</label>
+				
+				     	<input type="radio" name="quickdue" id="quick-due-2" value="week" onclick="changedue(this)"/>
+				     	<label for="quick-due-2">Next week</label>
+				
+				     	<input type="radio" name="quickdue" id="quick-due-3" value="month" onclick="changedue(this)" />
+				     	<label for="quick-due-3">Next month</label>
+				     	
+				     	<input type="radio" name="quickdue" id="quick-due-4" value="custom" onclick="changedue(this)" />
+				     	<label for="quick-due-4">Custom</label>-->
+					</fieldset>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+						<div data-role="fieldcontain">
+						<label for="">Hours needed to complete: </label><input id="taskhours" name="hours" value="1"/>
+						</div>
+				     	<input type="button" onclick="changehour(this)" value="1" />
+				     	<input type="button" onclick="changehour(this)" value="2" />
+				     	<input type="button" onclick="changehour(this)" value="3" />
+				     	<!-- <input type="radio" name="hours" id="hours-1" value="dur-1" />
+				     	<label for="hours-1">1</label>
+				     	
+				     	<input type="radio" name="hours" id="hours-2" value="dur-2" />
+				     	<label for="hours-2">2</label>
+				     	
+				     	<input type="radio" name="hours" id="hours-3" value="dur-3" />
+				     	<label for="hours-3">3</label>
+				     	
+				     	<input type="radio" name="hours" id="hours-4" value="dur-4" />
+				     	<label for="hours-4">More</label> -->
+					</fieldset>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Importance: <strong><span id="taskpriority">Normal</span></strong></legend>
+				     	<input type="radio" name="priority" id="importance-0" value="0" onclick="changepri(this)" />
+				     	<label for="importance-0">Less</label>
+				
+				     	<input type="radio" name="priority" id="importance-1" value="1" onclick="changepri(this)" checked="true"/>
+				     	<label for="importance-1">Normal</label>
+				
+				     	<input type="radio" name="priority" id="importance-2" value="2" onclick="changepri(this)" />
+				     	<label for="importance-2">More</label>
+					</fieldset>
+					<!-- <label for="category" class="select">Category:</label>
+					<select name="category" id="category">
+					   <option value="1" selected="selected">School</option>
+					   <option value="2">Work</option>
+					   <option value="3">CCA</option>
+					   <option value="4">Add New</option>
+					</select> -->
+				    <fieldset data-role="controlgroup">
+					   <legend>Alert me when it's time to:</legend>
+					   <input type="checkbox" name="alert-before" id="alert-before" class="custom" />
+					   <label for="alert-before">Start work</label>
+					   <input type="checkbox" name="alert-end" id="alert-end" class="custom" />
+					   <label for="alert-end">Finish up work</label>
+				    </fieldset>
+			    </form>
 			</div>
 		</div>
 		</body>

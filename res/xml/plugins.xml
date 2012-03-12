@@ -17,4 +17,5 @@
     <plugin name="FileTransfer" value="com.phonegap.FileTransfer"/>
     <plugin name="Capture" value="com.phonegap.Capture"/>
     <plugin name="DatePickerPlugin" value="com.phonegap.plugin.DatePickerPlugin"/>
+    <plugin name="LocalNotification" value="com.phonegap.plugin.localnotification.LocalNotification" />
 </plugins>

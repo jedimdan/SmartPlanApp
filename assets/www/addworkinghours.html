@@ -5,6 +5,106 @@
     <link rel="stylesheet" href="jquery.mobile-1.0.1.css" />
     <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/Global.js"></script>
+    <script>
+    	$(document).ready(populate);
+    	
+    	function populate(){
+    		//get ID
+			id = getParameterByName('id');
+			
+			if(id){
+				$.ajax({url:'http://2012-02-is306-t6-v1.appspot.com/workhour/get/'+id,dataType: 'jsonp',success:
+					function(data){
+						for(i=0;i<7;i++){
+							dayint = i+1
+							$("#day-"+dayint).attr("checked",data.days[i]).checkboxradio("refresh");
+						}
+						
+						if(data.starthr+1 > 12){
+							$("#start-hour").val(data.starthr-12).selectmenu('refresh', true);
+							$("#start-ap").val('PM').selectmenu('refresh', true);
+						}
+						else{
+							$("#start-hour").val(data.starthr).selectmenu('refresh', true);
+						}
+						
+						
+						if(data.endhr+1 > 12){
+							$("#end-hour").val(data.endhr-12).selectmenu('refresh', true);
+							$("#end-ap").val('PM').selectmenu('refresh', true);
+						}
+						else{
+							$("#end-hour").val(data.endhr).selectmenu('refresh', true);
+						}
+					}
+					}
+				);
+			}
+    	}
+    	
+    	function submitwh(){
+    		if($('#start-ap').val()=='PM'){
+    				starthr = Number($('#start-hour')[0].selectedIndex+1)+12;
+    			}
+    			else{
+    				starthr = $('#start-hour')[0].selectedIndex+1;
+    			}
+    			if($('#end-ap').val()=='PM'){
+    				endhr = Number($('#end-hour')[0].selectedIndex+1)+12;
+    			}
+    			else{
+    				endhr = $('#end-hour')[0].selectedIndex+1;
+    			}
+    		
+    		if(id){ //save only if there is an id.
+    			
+				//alert($("[name='hours']").val())
+				$.ajax({url:'http://2012-02-is306-t6-v1.appspot.com/workhour/submit',
+						dataType: 'jsonp',
+						data:{
+								id:id,
+								day1:$('#day-1').attr("checked"),
+								day2:$('#day-2').attr("checked"),
+								day3:$('#day-3').attr("checked"),
+								day4:$('#day-4').attr("checked"),
+								day5:$('#day-5').attr("checked"),
+								day6:$('#day-6').attr("checked"),
+								day7:$('#day-7').attr("checked"),
+								starthr:starthr,
+								endhr:endhr
+								},
+						success:
+							function(data){
+								alert('Work Hour added!');
+								document.location.href="settings.html#settings-working-hours";
+							}
+					});
+			}else{
+				$.ajax({url:'http://2012-02-is306-t6-v1.appspot.com/workhour/submit',
+						dataType: 'jsonp',
+						data:{
+								username:'danieltsou',
+								day1:$('#day-1').attr("checked"),
+								day2:$('#day-2').attr("checked"),
+								day3:$('#day-3').attr("checked"),
+								day4:$('#day-4').attr("checked"),
+								day5:$('#day-5').attr("checked"),
+								day6:$('#day-6').attr("checked"),
+								day7:$('#day-7').attr("checked"),
+								starthr:starthr,
+								endhr:endhr
+								},
+						success:
+							function(){
+								alert('Work Hour saved!');
+								document.location.href="settings.html#settings-working-hours";
+							}
+					});
+			}
+    	}
+    	
+    </script>
     <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -12,26 +112,26 @@
     <body>
 		<div data-role="page" id="addworkinghour-page1"> 
 			<div data-role="header" data-position="fixed">
-				<a href="index.html" data-direction="reverse" data-icon="delete" rel="external">Cancel</a>
+				<a href="settings.html#settings-working-hours" data-direction="reverse" data-icon="delete" rel="external">Cancel</a>
 				<h1>Add Working Hour</h1>
-				<a href="settings.html#settings-working-hours" data-icon="check" rel="external">Save</a>
+				<a data-icon="check" onclick="submitwh()">Save</a>
 			</div>
 			<div data-role="content">
 				<fieldset data-role="controlgroup">
 					<legend>Day</legend>
-					<input type="checkbox" name="day" id="day-1" class="custom" />
+					<input type="checkbox" name="day-1" id="day-1" class="custom" />
 					<label for="day-1">Mon</label>
-					<input type="checkbox" name="day" id="day-2" class="custom" />
+					<input type="checkbox" name="day-2" id="day-2" class="custom" />
 					<label for="day-2">Tue</label>
-					<input type="checkbox" name="day" id="day-3" class="custom" />
+					<input type="checkbox" name="day-3" id="day-3" class="custom" />
 					<label for="day-3">Wed</label>
-					<input type="checkbox" name="day" id="day-4" class="custom" />
+					<input type="checkbox" name="day-4" id="day-4" class="custom" />
 					<label for="day-4">Thu</label>
-					<input type="checkbox" name="day" id="day-5" class="custom" />
+					<input type="checkbox" name="day-5" id="day-5" class="custom" />
 					<label for="day-5">Fri</label>
-					<input type="checkbox" name="day" id="day-6" class="custom" />
+					<input type="checkbox" name="day-6" id="day-6" class="custom" />
 					<label for="day-6">Sat</label>
-					<input type="checkbox" name="day" id="day-7" class="custom" />
+					<input type="checkbox" name="day-7" id="day-7" class="custom" />
 					<label for="day-7">Sun</label>
 				</fieldset>
 				<fieldset data-role="controlgroup" data-type="horizontal">
@@ -48,7 +148,7 @@
 						<option>9</option>
 						<option>10</option>
 						<option>11</option>
-						<option>12</option>
+						<option value='0'>12</option>
 					</select>
 					<select name="start-min" id="start-min">
 						<option>00</option>
@@ -83,7 +183,7 @@
 						<option>9</option>
 						<option>10</option>
 						<option>11</option>
-						<option>12</option>
+						<option value=0>12</option>
 					</select>
 					<select name="end-min" id="end-min">
 						<option>00</option>

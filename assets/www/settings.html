@@ -7,6 +7,34 @@
     <script type="text/javascript" charset="utf-8" src="jquery-1.7.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <script>
+    	$(document).ready(populateWorkList);
+		
+		function populateWorkList(){
+			$.ajax({url:'http://2012-02-is306-t6-v1.appspot.com/workhour/getall/danieltsou',dataType: 'jsonp',success:
+				function(data){
+					weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+					
+					for(i=0;i<data.length;i++){
+						$("<li data-role='list-divider'>"+weekdays[i]+"</li>").appendTo('#workhrlist');
+						
+						for(j=0;j<data[i].length;j++){
+							id = data[i][j].id;
+							$("<li><a href='addworkinghours.html?id="+id+"' rel='external'>"+data[i][j].starthr+":00 to "+data[i][j].endhr+":00</a><a onclick=\"alert('delete')\" data-icon='delete'>Delete</a></li>").appendTo('#workhrlist');
+						}
+					
+					}
+					
+					//reload jquery mobile
+					var page = $(this);
+					page.trigger('pagecreate');
+  					$("ul").listview('refresh');
+				}
+			
+			})
+			
+		}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     </head>
     <body>
@@ -34,13 +62,13 @@
 		</div>
 		<div data-role="page" id="settings-working-hours"> 
 			<div data-role="header" data-position="fixed">
-				<a href="#settings-home" data-direction="reverse" data-icon="arrow-l" >Settings</a>
+				<a href="index.html" data-direction="reverse" rel="external" data-icon="arrow-l" >Home</a>
 				<h1>Working Hours</h1>
 				<a href="addworkinghours.html" data-iconpos="right" data-icon="plus" rel="external">Add</a>
 			</div>
 			<div data-role="content">
-				<ul data-role="listview">
-					<li data-role="list-divider">Monday</li>
+				<ul data-role="listview" id="workhrlist">
+					<!-- <li data-role="list-divider">Monday</li>
 					<li><a href="editworkinghours.html">10:00 AM to 12:00 PM</a></li>
 					<li><a href="editworkinghours.html">1:00 PM to 6:00 PM</a></li>
 					<li data-role="list-divider">Tuesday</li>
@@ -54,7 +82,7 @@
 					<li><a href="editworkinghours.html">10:00 AM to 12:00 PM</a></li>
 					<li data-role="list-divider">Saturday</li>
 					<li><a href="editworkinghours.html">9:00 AM to 12:00 PM</a></li>
-					<li data-role="list-divider">Sunday</li>
+					<li data-role="list-divider">Sunday</li> -->
 				</ul>
 			</div>
 		</div>
