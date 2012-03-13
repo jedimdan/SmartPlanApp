@@ -8,7 +8,7 @@
     <script type="text/javascript" charset="utf-8" src="js/Global.js"></script>
     <!-- <script type="text/javascript" charset="utf-8" src="js/Models.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/TaskCtrl.js"></script> -->
-    
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
     <script>
     	$( '#addtask-page1' ).live( "pagecreate", function() {
 		    var picker = $( "input#taskdue", this );
@@ -89,6 +89,7 @@
 				taskduedate = new Date();
 	    		taskduedate.setDate(taskduedate.getDate()+7);
 	    		$('#taskdue').val(taskduedate.toDateString());
+	    		$("#importance-1").attr("checked",true).checkboxradio("refresh");
     		}
 		}
 		
@@ -210,7 +211,7 @@
 		}
 		
     </script>
-    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0.1.min.js"></script>
+    
     <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
     <link rel="stylesheet" type="text/css" href="css/mobipick.css" />
 	<script type="text/javascript" src="external/xdate.js"></script>
@@ -251,12 +252,11 @@
 				     	<label for="quick-due-4">Custom</label>-->
 					</fieldset>
 					<fieldset data-role="controlgroup" data-type="horizontal">
-						<div data-role="fieldcontain">
-						<label for="">Hours needed to complete: </label><input id="taskhours" name="hours" value="1"/>
-						</div>
+						<label for="hours">Hours needed to complete: </label><input id="taskhours" name="hours" value="1"/>
 				     	<input type="button" onclick="changehour(this)" value="1" />
 				     	<input type="button" onclick="changehour(this)" value="2" />
 				     	<input type="button" onclick="changehour(this)" value="3" />
+				     	<input type="button" onclick="changehour(this)" value="4" />
 				     	<!-- <input type="radio" name="hours" id="hours-1" value="dur-1" />
 				     	<label for="hours-1">1</label>
 				     	
@@ -274,7 +274,7 @@
 				     	<input type="radio" name="priority" id="importance-0" value="0" onclick="changepri(this)" />
 				     	<label for="importance-0">Less</label>
 				
-				     	<input type="radio" name="priority" id="importance-1" value="1" onclick="changepri(this)" checked="true"/>
+				     	<input type="radio" name="priority" id="importance-1" value="1" onclick="changepri(this)" />
 				     	<label for="importance-1">Normal</label>
 				
 				     	<input type="radio" name="priority" id="importance-2" value="2" onclick="changepri(this)" />
