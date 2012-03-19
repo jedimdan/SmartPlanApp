@@ -113,6 +113,7 @@
   					if(gcounter > 0){
   						alert(gcounter+' task(s) will be overdue and are highlighted red.');
   					}
+  					$("#listloading").remove();
 				}
 			
 			})
@@ -177,11 +178,13 @@
 		<div data-role="page" id="index-calendar"> 
 			<div data-role="header" data-position="inline">
 				<a href="settings.html#settings-working-hours" data-icon="gear" rel="external">Hours</a>
-				<h1>Calendar</h1>
+				<h1>Task List</h1>
 				<a href="addtask.html" data-icon="plus" data-iconpos="right" rel="external">Add</a>
 			</div>
 			<div data-role="content">
 				<ul data-role="listview" id="calendarlist" data-split-icon="checkbox-off" data-split-theme="d">
+					<li id="listloading">Loading</li>
+					<li><a href="refresh.html" rel="external" rel="external" data-theme='b'>Refresh</a></li>
 				<!-- <li><a href="welcome.html" rel="external" data-theme='b'>Welcome Screen (Link won't exist in final version)</a></li> -->
 				</ul>				
 			</div>
